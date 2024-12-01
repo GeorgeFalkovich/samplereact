@@ -1,0 +1,14 @@
+.app-container {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.triangle {
+  margin-bottom: 10px;
+}
+
+.triangle-text,
+.version {
+  font-size: 20px;
+  font-weight: bold;
+}

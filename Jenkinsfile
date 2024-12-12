@@ -2,11 +2,12 @@ pipeline {
 
   environment {
     PROJECT = "georgef-sandbox"
+    REGION = "us-central1"
     APP_NAME = "samplereactapp"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "my-gke-cluster"
     CLUSTER_ZONE = "us-central1-a"
-    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    IMAGE_TAG = "jenkins"
     JENKINS_CRED = "${PROJECT}"
   }
 
@@ -42,7 +43,7 @@ spec:
       steps {
         container('gcloud') {
           sh "ls -la"
-          sh ""
+          sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${tag}"
           sh "echo ${PROJECT}"
         }
       }
@@ -51,4 +52,4 @@ spec:
   }
 }
 
-// gcloud builds submit --region=us-central1 --tag us-central1-docker.pkg.dev/georgef-sandbox/reactsampleapp/reactsampeap
+// gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:jenkins

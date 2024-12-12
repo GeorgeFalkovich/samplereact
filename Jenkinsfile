@@ -42,11 +42,13 @@ spec:
       steps {
         container('gcloud') {
           sh "ls -la"
-          sh "gcloud compute instances list"
-          sh "echo $env.BRANCH_NAME"
+          sh ""
+          sh "echo ${PROJECT}"
         }
       }
     }
 
   }
 }
+
+// gcloud builds submit --region=us-central1 --tag us-central1-docker.pkg.dev/georgef-sandbox/reactsampleapp/reactsampeap

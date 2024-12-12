@@ -2,6 +2,12 @@ pipeline {
 
   environment {
     PROJECT = "georgef-sandbox"
+    APP_NAME = "samplereactapp"
+    FE_SVC_NAME = "${APP_NAME}-frontend"
+    CLUSTER = "my-gke-cluster"
+    CLUSTER_ZONE = "us-central1-a"
+    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    JENKINS_CRED = "${PROJECT}"
   }
 
   agent {
@@ -37,7 +43,8 @@ spec:
         container('gcloud') {
           sh "ls -la"
           sh "gcloud compute instances list"
-          sh "cat triggerfile"
+          sh "echo $BRANCH_NAME"
+          sh "echo $env.BRANCH_NAME"
         }
       }
     }

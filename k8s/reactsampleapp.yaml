@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: react-sample-app
+  namespace: default
   labels:
     app: react-sample-app
 spec:
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: react-sample-app-service
+  namespace: default
 spec:
   selector:
     app: react-sample-app

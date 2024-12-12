@@ -3,7 +3,7 @@ pipeline {
   environment {
     PROJECT = "georgef-sandbox"
     REGION = "us-central1"
-    APP_NAME = "samplereactapp"
+    APP_NAME = "reactsampleapp"
     FE_SVC_NAME = "${APP_NAME}-frontend"
     CLUSTER = "my-gke-cluster"
     CLUSTER_ZONE = "us-central1-a"

@@ -43,7 +43,6 @@ spec:
         container('gcloud') {
           sh "ls -la"
           sh "gcloud compute instances list"
-          sh "echo $BRANCH_NAME"
           sh "echo $env.BRANCH_NAME"
         }
       }

@@ -37,7 +37,7 @@ spec:
         container('gcloud') {
           sh "ls -la"
           sh "gcloud compute instances list"
-          sh "echo 'hello'"
+          sh "cat triggerfile'"
         }
       }
     }

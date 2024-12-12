@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: deployment-config
+  namespace: default
+data:
+  TAG: pronk
+  REGION: us-central1
+  PROJECT: georgef-sandbox
+  APP_NAME: reactsampleapp

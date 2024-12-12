@@ -8,7 +8,7 @@ pipeline {
     CLUSTER = "my-gke-cluster"
     CLUSTER_ZONE = "us-central1-a"
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-    TAG = "jenkins"
+    TAG = "pronk"
   }
 
   agent {

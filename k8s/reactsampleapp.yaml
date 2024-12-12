@@ -17,13 +17,12 @@ spec:
     spec:
       containers:
         - name: react-sample-app
-          image: us-central1-docker.pkg.dev/georgef-sandbox/reactsampleapp/reactsampeap:${TAG}
+          image: us-central1-docker.pkg.dev/georgef-sandbox/reactsampleapp/reactsampeap:$TAG
           ports:
             - containerPort: 80
-          # envFrom:
-          #   - configMapRef:
-          #       name: deployment-config
-          #       key: TAG
+          envFrom:
+            - configMapRef:
+                name: deployment-config
 ---
 apiVersion: v1
 kind: Service

@@ -52,6 +52,7 @@ spec:
     stage('Deploy app to GKE') {
       steps {
         container('kubectl') {
+          sh "kubectl apply -f k8s/deployment-config.yaml"
           sh "kubectl apply -f k8s/reactsampleapp.yaml"
         }
       }

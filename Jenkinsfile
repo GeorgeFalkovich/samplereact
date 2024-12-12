@@ -9,7 +9,6 @@ pipeline {
     CLUSTER_ZONE = "us-central1-a"
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     TAG = "jenkins"
-    JENKINS_CRED = "${PROJECT}"
   }
 
   agent {
@@ -40,12 +39,20 @@ spec:
 }
   }
   stages {
-    stage('Build and push image with Container Builder') {
+    stage('Build and push image with Cloud Build') {
       steps {
         container('gcloud') {
           sh "ls -la"
           sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
           sh "echo ${PROJECT}"
+        }
+      }
+    }
+
+    stage('Deploy app to GKE') {
+      steps {
+        container('kubectl') {
+          sh "kubectl apply -f k8s/reactsampleapp.yaml"
         }
       }
     }

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-sample-app
+  labels:
+    app: react-sample-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: react-sample-app
+  template:
+    metadata:
+      labels:
+        app: react-sample-app
+    spec:
+      containers:
+        - name: react-sample-app
+          image: us-central1-docker.pkg.dev/georgef-sandbox/reactsampleapp/reactsampeap
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-sample-app-service
+spec:
+  selector:
+    app: react-sample-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

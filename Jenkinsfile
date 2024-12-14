@@ -7,7 +7,7 @@ pipeline {
     CLUSTER = "my-gke-cluster"
     CLUSTER_ZONE = "us-central1-a"
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-    TAG = "1.0"
+    TAG = "1.1"
   }
 
   agent {
@@ -42,7 +42,8 @@ spec:
       steps {
         container('gcloud') {
           sh "ls -la"
-          sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
+          // sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
+          sh "echo $IMAGE_TAG"
         }
       }
     }

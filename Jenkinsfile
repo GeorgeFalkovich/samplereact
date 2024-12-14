@@ -42,8 +42,7 @@ spec:
       steps {
         container('gcloud') {
           sh "ls -la"
-          // sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
-          sh "echo ${PROJECT}"
+          sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
         }
       }
     }
@@ -51,7 +50,7 @@ spec:
     stage('Deploy app to GKE') {
       steps {
         container('kubectl') {
-          sh "env"
+          // sh "env"
           sh "kubectl apply -f k8s/deployment-config.yaml"
           sh "kubectl apply -f k8s/reactsampleapp.yaml"
         }

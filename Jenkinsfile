@@ -42,7 +42,7 @@ spec:
       steps {
         container('gcloud') {
           sh "ls -la"
-          // sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
+          sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${env.BUILD_NUMBER}"
           sh "echo $IMAGE_TAG"
         }
       }

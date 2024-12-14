@@ -1,5 +1,4 @@
 pipeline {
-
   environment {
     PROJECT = "georgef-sandbox"
     REGION = "us-central1"
@@ -8,7 +7,7 @@ pipeline {
     CLUSTER = "my-gke-cluster"
     CLUSTER_ZONE = "us-central1-a"
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
-    TAG = "pronk"
+    TAG = "1.0"
   }
 
   agent {
@@ -43,7 +42,7 @@ spec:
       steps {
         container('gcloud') {
           sh "ls -la"
-          sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
+          // sh "gcloud builds submit --region=${REGION} --tag ${REGION}-docker.pkg.dev/${PROJECT}/${APP_NAME}/reactsampeap:${TAG}"
           sh "echo ${PROJECT}"
         }
       }
@@ -52,8 +51,10 @@ spec:
     stage('Deploy app to GKE') {
       steps {
         container('kubectl') {
-          sh "kubectl apply -f k8s/deployment-config.yaml"
-          sh "kubectl apply -f k8s/reactsampleapp.yaml"
+          sh "export TAG=${TAG}"
+          sh "echo $TAG"
+          // sh "kubectl apply -f k8s/deployment-config.yaml"
+          // sh "kubectl apply -f k8s/reactsampleapp.yaml"
         }
       }
     }

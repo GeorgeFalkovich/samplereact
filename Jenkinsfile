@@ -51,7 +51,7 @@ spec:
     stage('Deploy app to GKE') {
       steps {
         container('kubectl') {
-          sh "./envs.sh"
+          sh "chmod 777 envs.sh && ./envs.sh"
           sh "echo $TESTV"
           // sh "kubectl apply -f k8s/deployment-config.yaml"
           // sh "kubectl apply -f k8s/reactsampleapp.yaml"

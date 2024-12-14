@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: react-sample-app
-          image: us-central1-docker.pkg.dev/georgef-sandbox/reactsampleapp/reactsampeap:${env.BUILD_NUMBER}
+          image: us-central1-docker.pkg.dev/georgef-sandbox/reactsampleapp/reactsampeap
           ports:
             - containerPort: 80
           envFrom:

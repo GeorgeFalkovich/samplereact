@@ -52,7 +52,7 @@ spec:
       steps {
         container('kubectl') {
           sh "chmod 777 envs.sh && ./envs.sh"
-          sh "echo $TESTV"
+          sh "env"
           // sh "kubectl apply -f k8s/deployment-config.yaml"
           // sh "kubectl apply -f k8s/reactsampleapp.yaml"
         }
